@@ -1,0 +1,284 @@
+/* ===== تنسيقات عامة ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #212529;
+    transition: all 0.3s ease;
+}
+
+/* ===== الوضع الليلي - يتم تطبيقه على html ===== */
+
+/* الخلفية الأساسية */
+html.dark-mode {
+    background-color: #121212 !important;
+}
+
+html.dark-mode body {
+    background-color: #121212 !important;
+    color: #f0f0f0 !important;
+}
+
+/* النصوص العامة */
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode h4,
+html.dark-mode h5,
+html.dark-mode p,
+html.dark-mode span:not(.badge),
+html.dark-mode label {
+    color: #f0f0f0 !important;
+}
+
+/* البطاقات */
+html.dark-mode .card {
+    background-color: #1e1e2e !important;
+    border: 1px solid #333333 !important;
+    color: #f0f0f0 !important;
+}
+
+html.dark-mode .card-body {
+    color: #f0f0f0 !important;
+}
+
+html.dark-mode .card-title {
+    color: #ffffff !important;
+}
+
+html.dark-mode .card-text {
+    color: #d0d0d0 !important;
+}
+
+/* مهارات كاردز */
+html.dark-mode .skill-card {
+    background-color: #252540 !important;
+    border: 1px solid #3a3a5a !important;
+}
+
+html.dark-mode .skill-card p {
+    color: #f0f0f0 !important;
+}
+
+/* النافبار */
+html.dark-mode .navbar-dark.bg-dark {
+    background-color: #0a0a15 !important;
+}
+
+/* الفوتر */
+html.dark-mode footer.bg-dark {
+    background-color: #0a0a15 !important;
+}
+
+html.dark-mode footer.bg-light {
+    background-color: #1e1e2e !important;
+}
+
+/* الأزرار */
+html.dark-mode .btn-outline-primary {
+    color: #7c8eff;
+    border-color: #7c8eff;
+}
+
+html.dark-mode .btn-outline-primary:hover {
+    background-color: #7c8eff;
+    color: #121212;
+}
+
+/* الفورم */
+html.dark-mode .form-control {
+    background-color: #2d2d3a !important;
+    color: #f0f0f0 !important;
+    border-color: #444444 !important;
+}
+
+html.dark-mode .form-control:focus {
+    background-color: #3d3d4a !important;
+    color: #ffffff !important;
+    border-color: #667eea !important;
+}
+
+html.dark-mode .form-label {
+    color: #f0f0f0 !important;
+}
+
+/* البادجات */
+html.dark-mode .badge.bg-light {
+    background-color: #333333 !important;
+    color: #f0f0f0 !important;
+}
+
+/* الكارد في المنتجات */
+html.dark-mode .card .text-danger {
+    color: #ff8888 !important;
+}
+
+/* الروابط */
+html.dark-mode a:not(.btn):not(.navbar-brand) {
+    color: #8c9eff;
+}
+
+html.dark-mode a:not(.btn):not(.navbar-brand):hover {
+    color: #b0c4ff;
+}
+
+/* ألوان متدرجة للهيدر (تبقى كما هي لكن النصوص داخلها تظهر) */
+html.dark-mode header.bg-gradient-primary,
+html.dark-mode header.bg-gradient-success,
+html.dark-mode header.bg-gradient-warning,
+html.dark-mode header.bg-gradient-danger,
+html.dark-mode header.bg-gradient-info {
+    color: white !important;
+}
+
+html.dark-mode header h1,
+html.dark-mode header p {
+    color: white !important;
+}
+
+/* ===== ألوان متدرجة للهيدر (نهاري) ===== */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.bg-gradient-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
+.bg-gradient-danger {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+.bg-gradient-info {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* ===== بطاقات ===== */
+.card {
+    border: none;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* ===== أزرار ===== */
+.btn {
+    border-radius: 30px;
+    padding: 8px 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* ===== بطاقات المهارات ===== */
+.skill-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: default;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.skill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== حاسبة ===== */
+.calc-btn, .calc-op {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 12px !important;
+}
+
+.calc-btn:active, .calc-op:active {
+    transform: scale(0.95);
+}
+
+/* ===== أنيميشن ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ===== تجاوب ===== */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 1.8rem;
+    }
+    
+    .display-5 {
+        font-size: 1.5rem;
+    }
+    
+    .skill-card i {
+        font-size: 2rem !important;
+    }
+    
+    .skill-card p {
+        font-size: 0.75rem;
+    }
+    
+    .btn-lg {
+        padding: 6px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== شريط تمرير ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+
+html.dark-mode ::-webkit-scrollbar-track {
+    background: #2d2d3a;
+}
+
+/* ===== تعديلات إضافية ===== */
+.navbar {
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+img.rounded-circle {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}

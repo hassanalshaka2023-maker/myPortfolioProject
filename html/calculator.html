@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسان الشيخة | الحاسبة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fb;}
+        .card{border-radius:25px;background:white;}
+        button{border-radius:12px!important;font-size:1.2rem;font-weight:bold;}
+        .bg-gradient-danger{background:linear-gradient(135deg,#f093fb,#f5576c);}
+        footer{background:#1a1a2e;color:white;text-align:center;padding:20px;}
+        .calc-btn{background:#f0f0f0;border:none;padding:15px;}
+        .calc-btn:active{transform:scale(0.95);}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-code"></i> حسان الشيخة</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">السيرة الذاتية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">المدونة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">المتجر</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calculator.html">الحاسبة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">استشارة</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-danger text-white text-center py-4">
+        <div class="container">
+            <h1><i class="fas fa-calculator"></i> حاسبة بسيطة</h1>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <input type="text" id="calcDisplay" class="form-control form-control-lg text-end mb-3" readonly value="0">
+                    <div class="row g-2">
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="7">7</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="8">8</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="9">9</button></div>
+                        <div class="col-3"><button class="btn btn-warning w-100 calc-op" data-op="/">÷</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="4">4</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="5">5</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="6">6</button></div>
+                        <div class="col-3"><button class="btn btn-warning w-100 calc-op" data-op="*">×</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="1">1</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="2">2</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="3">3</button></div>
+                        <div class="col-3"><button class="btn btn-warning w-100 calc-op" data-op="-">-</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val="0">0</button></div>
+                        <div class="col-3"><button class="btn btn-secondary w-100 calc-btn" data-val=".">.</button></div>
+                        <div class="col-3"><button id="equalBtn" class="btn btn-success w-100">=</button></div>
+                        <div class="col-3"><button class="btn btn-warning w-100 calc-op" data-op="+">+</button></div>
+                        <div class="col-12"><button id="clearBtn" class="btn btn-danger w-100">C مسح</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 - حاسبة حسان الشيخة</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let display = document.getElementById('calcDisplay');
+        let current = '0';
+        function update(){display.value=current;}
+        document.querySelectorAll('.calc-btn').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                let v=this.getAttribute('data-val');
+                if(current==='0') current=v;
+                else current+=v;
+                update();
+            });
+        });
+        document.querySelectorAll('.calc-op').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                let op=this.getAttribute('data-op');
+                current+=op;
+                update();
+            });
+        });
+        document.getElementById('equalBtn').addEventListener('click',function(){
+            try{
+                let exp=current.replace(/×/g,'*').replace(/÷/g,'/');
+                let result=eval(exp);
+                current=result.toString();
+                update();
+            }catch(e){current='خطأ';update();}
+        });
+        document.getElementById('clearBtn').addEventListener('click',function(){
+            current='0';
+            update();
+        });
+    </script>
+</body>
+</html>

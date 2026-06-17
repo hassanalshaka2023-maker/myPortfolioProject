@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسان الشيخة | المدونة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fb;}
+        .card{border:none;border-radius:20px;transition:0.3s;background:white;box-shadow:0 5px 20px rgba(0,0,0,0.08);}
+        .card:hover{transform:translateY(-5px);}
+        .btn{border-radius:30px;padding:8px 25px;}
+        .btn-primary{background:linear-gradient(135deg,#11998e,#38ef7d);border:none;}
+        .bg-gradient-success{background:linear-gradient(135deg,#11998e,#38ef7d);}
+        footer{background:#1a1a2e;color:white;text-align:center;padding:20px;}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-code"></i> حسان الشيخة</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">السيرة الذاتية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">المدونة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">المتجر</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calculator.html">الحاسبة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">استشارة</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-success text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-5"><i class="fas fa-blog"></i> مدونتي التقنية</h1>
+            <p>أحدث المقالات في MERN Stack وتطوير الويب</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-primary">MERN</span>
+                        <small><i class="far fa-calendar-alt"></i> 10 يونيو 2026</small>
+                    </div>
+                    <h5>🚀 مقدمة إلى MERN Stack</h5>
+                    <p>MongoDB, Express, React, Node.js - مجموعة تقنيات قوية لتطبيقات الويب.</p>
+                    <button class="btn btn-outline-success readMoreBtn" data-title="مقدمة إلى MERN Stack">📖 قراءة المزيد</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-danger">React</span>
+                        <small><i class="far fa-calendar-alt"></i> 5 يونيو 2026</small>
+                    </div>
+                    <h5>⚛️ Hooks في React</h5>
+                    <p>useState, useEffect, useContext لإدارة الحالة في React.</p>
+                    <button class="btn btn-outline-success readMoreBtn" data-title="Hooks في React">📖 قراءة المزيد</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-warning text-dark">Node.js</span>
+                        <small><i class="far fa-calendar-alt"></i> 1 يونيو 2026</small>
+                    </div>
+                    <h5>🖥️ REST API بـ Express</h5>
+                    <p>إنشاء API مع Express.js و MongoDB باستخدام Mongoose.</p>
+                    <button class="btn btn-outline-success readMoreBtn" data-title="REST API بـ Express">📖 قراءة المزيد</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge bg-info">UI/UX</span>
+                        <small><i class="far fa-calendar-alt"></i> 28 مايو 2026</small>
+                    </div>
+                    <h5>🎨 Bootstrap 5 متقدم</h5>
+                    <p>تصميم مواقع متجاوبة باستخدام Bootstrap 5 وأدوات التخصيص.</p>
+                    <button class="btn btn-outline-success readMoreBtn" data-title="Bootstrap 5 متقدم">📖 قراءة المزيد</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 - مدونة حسان الشيخة</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.readMoreBtn').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                alert('📖 قراءة المزيد\nالمقال: '+this.getAttribute('data-title'));
+            });
+        });
+    </script>
+</body>
+</html>

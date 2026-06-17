@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسان الشيخة | استشارة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fb;}
+        .card{border-radius:25px;background:white;}
+        .btn-primary{background:linear-gradient(135deg,#4facfe,#00f2fe);border:none;border-radius:30px;}
+        .bg-gradient-info{background:linear-gradient(135deg,#4facfe,#00f2fe);}
+        footer{background:#1a1a2e;color:white;text-align:center;padding:20px;}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-code"></i> حسان الشيخة</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">السيرة الذاتية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">المدونة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">المتجر</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calculator.html">الحاسبة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">استشارة</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-info text-white text-center py-5">
+        <div class="container">
+            <h1><i class="fas fa-envelope"></i> نموذج استشارة</h1>
+            <p>املأ الحقول وسيتم التحقق منها</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card p-4">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-user"></i> الاسم</label>
+                            <input type="text" id="name" class="form-control">
+                            <div class="invalid-feedback">الاسم مطلوب</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-envelope"></i> البريد</label>
+                            <input type="email" id="email" class="form-control">
+                            <div class="invalid-feedback">بريد صحيح مطلوب</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-comment"></i> الرسالة</label>
+                            <textarea id="message" rows="4" class="form-control"></textarea>
+                            <div class="invalid-feedback">الرسالة مطلوبة</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">إرسال</button>
+                    </form>
+                    <div id="resultMsg" class="mt-3 text-center"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 - حسان الشيخة</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const msgInput = document.getElementById('message');
+        const resultDiv = document.getElementById('resultMsg');
+        
+        form.addEventListener('submit',function(e){
+            e.preventDefault();
+            let valid=true;
+            
+            if(nameInput.value.trim()===''){nameInput.classList.add('is-invalid');valid=false;}
+            else{nameInput.classList.remove('is-invalid');}
+            
+            const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test(emailInput.value.trim())){emailInput.classList.add('is-invalid');valid=false;}
+            else{emailInput.classList.remove('is-invalid');}
+            
+            if(msgInput.value.trim()===''){msgInput.classList.add('is-invalid');valid=false;}
+            else{msgInput.classList.remove('is-invalid');}
+            
+            if(valid){
+                resultDiv.innerHTML='<div class="alert alert-success">✅ تم إرسال استشارتك بنجاح</div>';
+                form.reset();
+                setTimeout(()=>resultDiv.innerHTML='',3000);
+            }else{
+                resultDiv.innerHTML='<div class="alert alert-danger">❌ يرجى تعبئة جميع الحقول</div>';
+            }
+        });
+    </script>
+</body>
+</html>
