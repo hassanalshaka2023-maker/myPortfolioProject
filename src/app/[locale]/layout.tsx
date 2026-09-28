@@ -42,7 +42,7 @@ export default async function LocaleLayout({
   const dir = localeDir(locale);
 
   return (
-    <html lang={locale} dir={dir} className={fontVariables} suppressHydrationWarning>
+    <html lang={locale} dir={dir} className={fontVariables} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="grain min-h-dvh">
         <NextIntlClientProvider>
           <Providers dir={dir}>{children}</Providers>

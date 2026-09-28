@@ -33,7 +33,7 @@ async function seedAdmin() {
 async function seedSettings() {
   const data = {
     nameEn: "Hassan Alsheikha",
-    nameAr: "حسن الشيخة",
+    nameAr: "حسان الشيخه",
     roleEn: "Full-Stack Developer",
     roleAr: "مطوّر Full-Stack",
     taglineEn: "I build *scalable* Full-Stack solutions.",

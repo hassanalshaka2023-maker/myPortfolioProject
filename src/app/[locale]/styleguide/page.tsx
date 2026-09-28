@@ -67,7 +67,7 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-8 font-mono text-sm text-muted-foreground">
-              {t("hero.greeting")} <span className="text-foreground">{isAr ? "حسن الشيخة" : "Hassan Alsheikha"}</span>
+              {t("hero.greeting")} <span className="text-foreground">{isAr ? "حسان الشيخه" : "Hassan Alsheikha"}</span>
             </p>
           </Reveal>
           <Reveal delay={0.16}>
