@@ -9,10 +9,21 @@ Bilingual (English / Arabic) developer portfolio with an admin dashboard.
 ```bash
 npm install
 cp .env.example .env        # fill in the values (see below)
-npm run db:migrate          # creates the tables
+npm run db:migrate          # creates the tables (or: npm run db:apply — see below)
 npm run db:seed             # admin user + existing portfolio content + storage bucket
 npm run dev                 # http://localhost:3000
 ```
+
+### If port 5432 is blocked on your network
+
+`prisma migrate` needs the session pooler (port 5432). If it fails with `P1001`, use the transaction pooler instead:
+
+```bash
+npm run db:diff -- <migration_name>   # generate migration SQL offline from schema changes
+npm run db:apply                      # apply pending migrations over DATABASE_URL (port 6543)
+```
+
+Both write to the standard `_prisma_migrations` table, so `prisma migrate deploy` elsewhere stays in sync.
 
 The design-system reference lives at `/styleguide` (development only).
 

@@ -1,0 +1,5 @@
+# Keep LF everywhere — migration checksums are computed over the exact file bytes.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

@@ -10,7 +10,7 @@ import bcrypt from "bcryptjs";
 import { PrismaClient, type SkillCategory } from "../src/generated/prisma/client";
 
 const db = new PrismaClient({
-  adapter: new PrismaPg({ connectionString: process.env.DIRECT_URL ?? process.env.DATABASE_URL }),
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
 });
 
 async function seedAdmin() {
