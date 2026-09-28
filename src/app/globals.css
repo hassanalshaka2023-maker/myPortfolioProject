@@ -149,7 +149,7 @@
 }
 
 @keyframes marquee {
-  to { transform: translateX(calc(-50% - var(--marquee-gap, 1rem) / 2)); }
+  to { transform: translateX(-100%); }
 }
 @keyframes float {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -159,6 +159,10 @@
 @keyframes shimmer {
   from { background-position: 200% 0; }
   to { background-position: -200% 0; }
+}
+@keyframes scroll-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
 }
 @keyframes pulse-dot {
   0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--success) 60%, transparent); }

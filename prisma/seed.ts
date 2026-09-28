@@ -48,7 +48,9 @@ async function seedSettings() {
       "خرّيج هندسة البرمجيات من جامعة دمشق، شغوف بالجانب الخلفي من التطبيقات — نماذج البيانات، والـ APIs، والبنية التي تحافظ على سرعة المنتج وأمانه مع نموّه.\n\n[TODO] أضف بضعة أسطر عن رحلتك وما تحب بناءه وما تبحث عنه لاحقاً.",
     locationEn: "Damascus, Syria",
     locationAr: "دمشق، سوريا",
-    email: null, // [TODO] real contact email
+    email: "hassanalshaka2023@gmail.com",
+    phone: "+963 938 503 705",
+    whatsappUrl: "https://wa.me/963938503705",
     githubUrl: null, // [TODO]
     linkedinUrl: null, // [TODO]
     yearsOfExperience: 0, // [TODO] — the stat is hidden while this is 0
