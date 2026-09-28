@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "titleSuffix": "مطوّر Full-Stack",
+    "description": "معرض أعمال حسن الشيخة — مطوّر Full-Stack و Backend يبني منصّات ويب قابلة للتوسّع وواجهات برمجية آمنة وبنى بيانات متينة."
+  },
+  "common": {
+    "toggleTheme": "تبديل المظهر",
+    "switchLanguage": "Switch to English",
+    "skipToContent": "انتقل إلى المحتوى",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "backToTop": "العودة للأعلى",
+    "loading": "جارٍ التحميل…",
+    "present": "حتى الآن",
+    "viewAll": "عرض الكل",
+    "backHome": "العودة للرئيسية"
+  },
+  "nav": {
+    "about": "عنّي",
+    "skills": "المهارات",
+    "projects": "المشاريع",
+    "experience": "الخبرات",
+    "services": "الخدمات",
+    "contact": "تواصل"
+  },
+  "hero": {
+    "available": "متاح لفرص عمل جديدة",
+    "greeting": "مرحباً، أنا",
+    "viewProjects": "استعرض المشاريع",
+    "contact": "تواصل معي",
+    "downloadCv": "تحميل السيرة الذاتية",
+    "scroll": "مرّر"
+  },
+  "about": {
+    "eyebrow": "عنّي",
+    "title": "أهندس الأجزاء التي لا تراها",
+    "stats": {
+      "years": "سنوات الخبرة",
+      "projects": "مشاريع منجزة",
+      "technologies": "تقنيات"
+    }
+  },
+  "skills": {
+    "eyebrow": "التقنيات",
+    "title": "الأدوات التي أبني بها",
+    "categories": {
+      "BACKEND": "الواجهات الخلفية",
+      "FRONTEND": "الواجهات الأمامية",
+      "MOBILE": "الموبايل",
+      "DEVOPS": "DevOps",
+      "DATABASES": "قواعد البيانات",
+      "TOOLS": "أدوات"
+    }
+  },
+  "projects": {
+    "eyebrow": "أعمالي",
+    "title": "مشاريع مختارة",
+    "all": "الكل",
+    "filterByStatus": "تصفية حسب الحالة",
+    "filterByTech": "تصفية حسب التقنية",
+    "empty": "لا توجد مشاريع مطابقة لهذه التصفية.",
+    "live": "الموقع المباشر",
+    "code": "الكود المصدري",
+    "caseStudy": "دراسة الحالة",
+    "featured": "مميّز",
+    "status": {
+      "COMPLETED": "مكتمل",
+      "IN_PROGRESS": "قيد التطوير",
+      "PLANNED": "مخطّط له"
+    },
+    "categories": {
+      "FULL_STACK": "Full-Stack",
+      "BACKEND": "Backend",
+      "FRONTEND": "Frontend",
+      "MOBILE": "موبايل",
+      "OTHER": "أخرى"
+    },
+    "detail": {
+      "back": "كل المشاريع",
+      "role": "دوري",
+      "problem": "المشكلة",
+      "solution": "الحل",
+      "result": "النتيجة",
+      "stack": "التقنيات المستخدمة",
+      "timeline": "المدة",
+      "client": "العميل",
+      "category": "التصنيف",
+      "gallery": "معرض الصور",
+      "next": "المشروع التالي"
+    }
+  },
+  "roadmap": {
+    "eyebrow": "خارطة الطريق",
+    "title": "قريباً",
+    "description": "أفكار ومنتجات أعمل على التخطيط لها حالياً."
+  },
+  "experience": {
+    "eyebrow": "المسيرة",
+    "title": "الخبرات والتعليم",
+    "types": {
+      "WORK": "عمل",
+      "FREELANCE": "عمل حر",
+      "EDUCATION": "تعليم"
+    }
+  },
+  "services": {
+    "eyebrow": "الخدمات",
+    "title": "كيف يمكنني مساعدتك"
+  },
+  "contact": {
+    "eyebrow": "تواصل",
+    "title": "لنبنِ شيئاً رائعاً معاً",
+    "description": "لديك مشروع، أو فرصة عمل، أو تريد فقط إلقاء التحية؟ بريدي مفتوح دائماً.",
+    "form": {
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "subject": "الموضوع",
+      "message": "الرسالة",
+      "namePlaceholder": "اسمك",
+      "emailPlaceholder": "you@company.com",
+      "subjectPlaceholder": "عن ماذا تريد التحدث؟ (اختياري)",
+      "messagePlaceholder": "أخبرني قليلاً عن مشروعك…",
+      "submit": "إرسال الرسالة",
+      "sending": "جارٍ الإرسال…",
+      "success": "شكراً لك! تم إرسال رسالتك وسأرد عليك قريباً.",
+      "error": "حدث خطأ ما. حاول مجدداً أو راسلني مباشرة عبر البريد.",
+      "rateLimited": "رسائل كثيرة — يرجى المحاولة بعد بضع دقائق."
+    },
+    "validation": {
+      "name": "يرجى إدخال اسمك",
+      "email": "يرجى إدخال بريد إلكتروني صالح",
+      "message": "يجب أن تحتوي الرسالة على 10 أحرف على الأقل"
+    },
+    "orEmail": "أو راسلني على"
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة.",
+    "built": "تصميم وتطوير"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها."
+  }
+}

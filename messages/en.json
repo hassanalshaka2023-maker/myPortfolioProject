@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "titleSuffix": "Full-Stack Developer",
+    "description": "Portfolio of Hassan Alsheikha — Full-Stack & Backend developer building scalable web platforms, secure APIs and robust data architectures."
+  },
+  "common": {
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "التبديل إلى العربية",
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "backToTop": "Back to top",
+    "loading": "Loading…",
+    "present": "Present",
+    "viewAll": "View all",
+    "backHome": "Back home"
+  },
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "Available for new opportunities",
+    "greeting": "Hi, I'm",
+    "viewProjects": "View projects",
+    "contact": "Get in touch",
+    "downloadCv": "Download CV",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Engineering the parts you don't see",
+    "stats": {
+      "years": "Years of experience",
+      "projects": "Projects delivered",
+      "technologies": "Technologies"
+    }
+  },
+  "skills": {
+    "eyebrow": "Stack",
+    "title": "Tools I build with",
+    "categories": {
+      "BACKEND": "Backend",
+      "FRONTEND": "Frontend",
+      "MOBILE": "Mobile",
+      "DEVOPS": "DevOps",
+      "DATABASES": "Databases",
+      "TOOLS": "Tools"
+    }
+  },
+  "projects": {
+    "eyebrow": "Work",
+    "title": "Selected projects",
+    "all": "All",
+    "filterByStatus": "Filter by status",
+    "filterByTech": "Filter by technology",
+    "empty": "No projects match these filters.",
+    "live": "Live site",
+    "code": "Source code",
+    "caseStudy": "Case study",
+    "featured": "Featured",
+    "status": {
+      "COMPLETED": "Completed",
+      "IN_PROGRESS": "In progress",
+      "PLANNED": "Planned"
+    },
+    "categories": {
+      "FULL_STACK": "Full-Stack",
+      "BACKEND": "Backend",
+      "FRONTEND": "Frontend",
+      "MOBILE": "Mobile",
+      "OTHER": "Other"
+    },
+    "detail": {
+      "back": "All projects",
+      "role": "My role",
+      "problem": "The problem",
+      "solution": "The solution",
+      "result": "The result",
+      "stack": "Tech stack",
+      "timeline": "Timeline",
+      "client": "Client",
+      "category": "Category",
+      "gallery": "Gallery",
+      "next": "Next project"
+    }
+  },
+  "roadmap": {
+    "eyebrow": "Roadmap",
+    "title": "Coming soon",
+    "description": "Ideas and products currently on my drawing board."
+  },
+  "experience": {
+    "eyebrow": "Journey",
+    "title": "Experience & education",
+    "types": {
+      "WORK": "Work",
+      "FREELANCE": "Freelance",
+      "EDUCATION": "Education"
+    }
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "How I can help"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's build something great",
+    "description": "Have a project in mind, a role to fill, or just want to say hi? My inbox is always open.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "you@company.com",
+      "subjectPlaceholder": "What's it about? (optional)",
+      "messagePlaceholder": "Tell me a bit about your project…",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "success": "Thanks! Your message has been sent — I'll get back to you soon.",
+      "error": "Something went wrong. Please try again or email me directly.",
+      "rateLimited": "Too many messages — please try again in a few minutes."
+    },
+    "validation": {
+      "name": "Please enter your name",
+      "email": "Please enter a valid email",
+      "message": "Your message should be at least 10 characters"
+    },
+    "orEmail": "Or email me at"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "built": "Designed & built by"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved."
+  }
+}
