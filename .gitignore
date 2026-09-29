@@ -31,3 +31,9 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+.vercel
+
+# local screenshots (uploaded to Supabase Storage)
+photo/
+scripts/tmp/

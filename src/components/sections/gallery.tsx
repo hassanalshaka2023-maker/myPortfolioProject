@@ -36,12 +36,14 @@ export function Gallery({ images, title }: { images: string[]; title: string }) 
               className="group relative block aspect-[16/10] w-full overflow-hidden rounded-2xl border bg-muted"
               aria-label={`${title} — ${i + 1} / ${images.length}`}
             >
+              {/* Screenshots come in any shape (wide desktop, tall phone): show the whole image over a blurred fill of itself. */}
+              <Image src={src} alt="" aria-hidden fill sizes="64px" className="scale-110 object-cover opacity-40 blur-2xl" />
               <Image
                 src={src}
                 alt=""
                 fill
                 sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]"
+                className="object-contain p-3 drop-shadow-xl transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]"
               />
             </button>
           </li>
