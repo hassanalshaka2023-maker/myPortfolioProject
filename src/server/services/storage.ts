@@ -11,20 +11,34 @@ export interface UploadResult {
   key: string;
 }
 
+export interface SignedUpload {
+  /** PUT the raw file body here from the browser */
+  uploadUrl: string;
+  /** Public URL the file will be served from once uploaded */
+  publicUrl: string;
+}
+
 export interface StorageProvider {
   upload(file: File, folder: string): Promise<UploadResult>;
+  /** Browser → storage direct upload (avoids serverless request-size limits). */
+  createSignedUpload(folder: string, filename: string, contentType: string): Promise<SignedUpload>;
   remove(urlOrKey: string): Promise<void>;
+  /** True when the URL points at a file this provider manages. */
+  owns(url: string): boolean;
 }
 
 export const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "image/svg+xml"];
 export const ALLOWED_DOCUMENT_TYPES = ["application/pdf"];
 export const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
 
-function extensionOf(file: File) {
+function extensionOf(file: { name: string; type: string }) {
   const fromName = file.name.split(".").pop()?.toLowerCase();
   if (fromName && /^[a-z0-9]{1,5}$/.test(fromName)) return fromName;
   return file.type.split("/")[1]?.replace("svg+xml", "svg") ?? "bin";
 }
+
+const newKey = (folder: string, file: { name: string; type: string }) =>
+  `${folder}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${extensionOf(file)}`;
 
 class SupabaseStorage implements StorageProvider {
   constructor(
@@ -34,7 +48,7 @@ class SupabaseStorage implements StorageProvider {
   ) {}
 
   async upload(file: File, folder: string): Promise<UploadResult> {
-    const key = `${folder}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${extensionOf(file)}`;
+    const key = newKey(folder, file);
     const { error } = await this.client.storage.from(this.bucket).upload(key, file, {
       contentType: file.type,
       cacheControl: "31536000",
@@ -42,6 +56,17 @@ class SupabaseStorage implements StorageProvider {
     });
     if (error) throw new Error(`Upload failed: ${error.message}`);
     return { key, url: `${this.publicBase}/${key}` };
+  }
+
+  async createSignedUpload(folder: string, filename: string, contentType: string): Promise<SignedUpload> {
+    const key = newKey(folder, { name: filename, type: contentType });
+    const { data, error } = await this.client.storage.from(this.bucket).createSignedUploadUrl(key);
+    if (error || !data) throw new Error(`Could not create upload URL: ${error?.message}`);
+    return { uploadUrl: data.signedUrl, publicUrl: `${this.publicBase}/${key}` };
+  }
+
+  owns(url: string) {
+    return url.startsWith(`${this.publicBase}/`);
   }
 
   async remove(urlOrKey: string): Promise<void> {
@@ -65,6 +90,19 @@ function createStorage(): StorageProvider {
 export function storage(): StorageProvider {
   instance ??= createStorage();
   return instance;
+}
+
+/** Best-effort delete of files that were referenced before but not anymore. Never throws. */
+export async function removeUnreferenced(before: (string | null | undefined)[], after: (string | null | undefined)[]) {
+  const keep = new Set(after.filter(Boolean));
+  const stale = before.filter((u): u is string => !!u && !keep.has(u));
+  if (stale.length === 0) return;
+  try {
+    const s = storage();
+    await Promise.all(stale.filter((u) => s.owns(u)).map((u) => s.remove(u).catch(() => {})));
+  } catch {
+    // storage not configured — nothing to clean up
+  }
 }
 
 export function validateUpload(file: File, allowed: string[] = ALLOWED_IMAGE_TYPES): string | null {
