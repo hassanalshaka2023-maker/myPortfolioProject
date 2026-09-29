@@ -1,0 +1,223 @@
+// Snapshot of schema.prisma as of the latest migration. Maintained by `npm run db:diff` — do not edit.
+// Portfolio data model.
+// Bilingual fields use the `En` / `Ar` suffix convention; see src/lib/i18n-fields.ts.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Auth ──────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// One row per failed login, used for rate limiting (see server/services/rate-limit.ts).
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  key       String
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
+}
+
+// ─── Projects ──────────────────────────────────────────────────────────
+
+enum ProjectStatus {
+  COMPLETED
+  IN_PROGRESS
+  PLANNED
+}
+
+enum ProjectCategory {
+  FULL_STACK
+  BACKEND
+  FRONTEND
+  MOBILE
+  OTHER
+}
+
+model Project {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  titleEn   String
+  titleAr   String
+  summaryEn String
+  summaryAr String
+  /// Markdown
+  contentEn String @default("")
+  /// Markdown
+  contentAr String @default("")
+
+  // Case-study blocks shown on /projects/[slug] (optional)
+  roleEn     String?
+  roleAr     String?
+  problemEn  String?
+  problemAr  String?
+  solutionEn String?
+  solutionAr String?
+  resultEn   String?
+  resultAr   String?
+
+  coverImage String?
+  gallery    String[]
+  techStack  String[]
+  category   ProjectCategory @default(FULL_STACK)
+  status     ProjectStatus   @default(COMPLETED)
+
+  startDate  DateTime?
+  endDate    DateTime?
+  liveUrl    String?
+  githubUrl  String?
+  clientName String?
+
+  featured  Boolean @default(false)
+  published Boolean @default(true)
+  order     Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, status, order])
+}
+
+// ─── Skills ────────────────────────────────────────────────────────────
+
+enum SkillCategory {
+  BACKEND
+  FRONTEND
+  MOBILE
+  DEVOPS
+  DATABASES
+  TOOLS
+}
+
+model Skill {
+  id       String        @id @default(cuid())
+  name     String
+  category SkillCategory
+  /// simple-icons slug (e.g. "nodedotjs") — rendered from the CDN
+  icon     String?
+  order    Int           @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category, order])
+}
+
+// ─── Experience / Timeline ─────────────────────────────────────────────
+
+enum ExperienceType {
+  WORK
+  FREELANCE
+  EDUCATION
+}
+
+model Experience {
+  id             String         @id @default(cuid())
+  type           ExperienceType @default(WORK)
+  roleEn         String
+  roleAr         String
+  organizationEn String
+  organizationAr String
+  locationEn     String?
+  locationAr     String?
+  descriptionEn  String         @default("")
+  descriptionAr  String         @default("")
+  startDate      DateTime
+  /// null = present
+  endDate        DateTime?
+  order          Int            @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Services ──────────────────────────────────────────────────────────
+
+model Service {
+  id            String  @id @default(cuid())
+  titleEn       String
+  titleAr       String
+  descriptionEn String
+  descriptionAr String
+  /// lucide icon name (e.g. "server", "layout-dashboard")
+  icon          String  @default("sparkles")
+  published     Boolean @default(true)
+  order         Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Contact messages ──────────────────────────────────────────────────
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  body      String
+  read      Boolean  @default(false)
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([read, createdAt])
+}
+
+// ─── Site settings (singleton, id = 1) ─────────────────────────────────
+
+model SiteSettings {
+  id Int @id @default(1)
+
+  nameEn    String
+  nameAr    String
+  roleEn    String
+  roleAr    String
+  taglineEn String
+  taglineAr String
+  /// Short intro shown under the hero headline
+  introEn   String
+  introAr   String
+  /// Longer "About" story (markdown)
+  aboutEn   String @default("")
+  aboutAr   String @default("")
+
+  email      String?
+  phone      String?
+  locationEn String?
+  locationAr String?
+  avatarUrl  String?
+  cvUrl      String?
+
+  githubUrl   String?
+  linkedinUrl String?
+  xUrl        String?
+  telegramUrl String?
+  whatsappUrl String?
+
+  yearsOfExperience Int     @default(0)
+  openToWork        Boolean @default(true)
+
+  showAbout      Boolean @default(true)
+  showSkills     Boolean @default(true)
+  showProjects   Boolean @default(true)
+  showRoadmap    Boolean @default(true)
+  showExperience Boolean @default(true)
+  showServices   Boolean @default(false)
+  showContact    Boolean @default(true)
+
+  updatedAt DateTime @updatedAt
+}
