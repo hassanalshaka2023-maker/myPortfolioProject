@@ -24,8 +24,9 @@
 4. في تيرمنال VS Code داخل مجلد المشروع:
 
    ```bash
-   git checkout main
+   git checkout master
    git merge rebuild
+   git branch -M main
    git remote add origin https://github.com/<اسم-المستخدم>/hassan-portfolio.git
    git push -u origin main
    ```
