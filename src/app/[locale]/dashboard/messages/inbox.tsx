@@ -36,6 +36,7 @@ export function Inbox({
   isEmpty: boolean;
 }) {
   const t = useTranslations("dashboard");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -129,7 +130,7 @@ export function Inbox({
         <Checkbox
           checked={allSelected ? true : selected.size > 0 ? "indeterminate" : false}
           onCheckedChange={() => setSelected(allSelected ? new Set() : new Set(messages.map((m) => m.id)))}
-          aria-label="Select all"
+          aria-label={tCommon("selectAll")}
         />
         {selected.size > 0 ? (
           <>

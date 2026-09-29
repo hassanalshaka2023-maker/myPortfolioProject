@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { About } from "@/components/sections/about";
@@ -9,7 +10,27 @@ import { Roadmap } from "@/components/sections/roadmap";
 import { Services } from "@/components/sections/services";
 import { Skills } from "@/components/sections/skills";
 import { TechMarquee } from "@/components/sections/tech-marquee";
+import { stripHighlight } from "@/components/highlight-text";
+import { socialLinks } from "@/components/site/social-icons";
+import { localized } from "@/lib/i18n-fields";
+import { alternates, jsonLd, localeUrl } from "@/lib/seo";
 import { getExperiences, getPublishedProjects, getPublishedServices, getSettings, getSkills } from "@/server/queries";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const settings = await getSettings();
+  if (!settings) return {};
+  const name = localized(settings, "name", locale);
+  const title = `${name} — ${localized(settings, "role", locale)}`;
+  const description = stripHighlight(localized(settings, "intro", locale));
+  return {
+    title: { absolute: title },
+    description,
+    alternates: alternates(locale),
+    openGraph: { title, description, url: localeUrl(locale) },
+    twitter: { title, description },
+  };
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -39,8 +60,33 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   ].filter(Boolean) as string[];
   const idx = (id: string) => String(order.indexOf(id) + 1).padStart(2, "0");
 
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${localeUrl("en")}#person`,
+    name: settings.nameEn,
+    alternateName: settings.nameAr,
+    jobTitle: localized(settings, "role", locale),
+    description: stripHighlight(localized(settings, "intro", locale)),
+    url: localeUrl(locale),
+    ...(settings.avatarUrl && { image: settings.avatarUrl }),
+    ...(settings.email && { email: `mailto:${settings.email}` }),
+    ...(localized(settings, "location", locale) && { address: { "@type": "PostalAddress", addressLocality: localized(settings, "location", locale) } }),
+    sameAs: socialLinks(settings).map((l) => l.href),
+    knowsAbout: skills.map((s) => s.name),
+  };
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: localized(settings, "name", locale),
+    url: localeUrl(locale),
+    inLanguage: locale,
+    author: { "@id": person["@id"] },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd([person, website])} />
       <Hero settings={settings} locale={locale} />
       {settings.showSkills && <TechMarquee skills={skills} />}
       {order.includes("about") && (

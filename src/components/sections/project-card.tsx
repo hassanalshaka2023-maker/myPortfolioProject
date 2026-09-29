@@ -50,7 +50,7 @@ export function ProjectCard({ project, labels, priority, className }: { project:
       ref={ref}
       onPointerMove={onPointerMove}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border bg-card/70 transition-[transform,border-color] duration-500 ease-out-expo hover:-translate-y-1 hover:border-foreground/15",
+        "group relative flex flex-col overflow-hidden rounded-2xl border bg-card/70 transition-[transform,border-color] duration-500 ease-out-expo hover:-translate-y-1 hover:border-foreground/15 has-[h3_a:focus-visible]:ring-2 has-[h3_a:focus-visible]:ring-ring has-[h3_a:focus-visible]:ring-offset-2 has-[h3_a:focus-visible]:ring-offset-background",
         project.featured && "border-gradient",
         className,
       )}
@@ -68,7 +68,7 @@ export function ProjectCard({ project, labels, priority, className }: { project:
             src={project.coverImage}
             alt=""
             fill
-            priority={priority}
+            preload={priority}
             sizes="(min-width: 1024px) 560px, (min-width: 768px) 50vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
           />

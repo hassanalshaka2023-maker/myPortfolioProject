@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, type Resolver } from "react-hook-form";
 import { AnimatePresence, motion } from "motion/react";
 import { CheckCircle2Icon, Loader2Icon, SendIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -11,8 +10,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { contactSchema, type ContactInput } from "@/lib/validations/contact";
+import type { ContactInput } from "@/lib/validations/contact";
 import { sendContactMessage } from "@/server/actions/contact";
+
+/**
+ * Lightweight client-side mirror of `contactSchema` — keeps Zod (~400 KB) out of the public bundle.
+ * The server action still validates with the real Zod schema.
+ */
+const resolver: Resolver<ContactInput> = async (values) => {
+  const errors: Partial<Record<keyof ContactInput, { type: string; message: string }>> = {};
+  const name = values.name.trim();
+  const email = values.email.trim();
+  const message = values.message.trim();
+  if (name.length < 2 || name.length > 100) errors.name = { type: "invalid", message: "name" };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 200) errors.email = { type: "invalid", message: "email" };
+  if (message.length < 10 || message.length > 5000) errors.message = { type: "invalid", message: "message" };
+  return Object.keys(errors).length ? { values: {}, errors } : { values, errors: {} };
+};
 
 export function ContactForm() {
   const t = useTranslations("contact");
@@ -24,7 +38,7 @@ export function ContactForm() {
     setError,
     formState: { errors, isSubmitting },
   } = useForm<ContactInput>({
-    resolver: zodResolver(contactSchema),
+    resolver,
     defaultValues: { name: "", email: "", subject: "", message: "", company: "" },
   });
 

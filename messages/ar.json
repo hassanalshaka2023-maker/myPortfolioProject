@@ -13,7 +13,15 @@
     "loading": "جارٍ التحميل…",
     "present": "حتى الآن",
     "viewAll": "عرض الكل",
-    "backHome": "العودة للرئيسية"
+    "backHome": "العودة للرئيسية",
+    "close": "إغلاق",
+    "previous": "السابق",
+    "next": "التالي",
+    "mainNav": "القائمة الرئيسية",
+    "selectAll": "تحديد الكل",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور",
+    "removeItem": "إزالة {item}"
   },
   "nav": {
     "about": "عنّي",

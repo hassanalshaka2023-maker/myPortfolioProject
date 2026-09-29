@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
 export function Gallery({ images, title }: { images: string[]; title: string }) {
+  const t = useTranslations("common");
   const [index, setIndex] = useState<number | null>(null);
   const open = index !== null;
 
@@ -56,13 +58,13 @@ export function Gallery({ images, title }: { images: string[]; title: string }) 
           )}
           {images.length > 1 && (
             <div className="flex items-center justify-center gap-3">
-              <Button variant="glass" size="icon" onClick={() => step(-1)} aria-label="Previous">
+              <Button variant="glass" size="icon" onClick={() => step(-1)} aria-label={t("previous")}>
                 <ChevronLeftIcon className="rtl:-scale-x-100" />
               </Button>
               <span className="font-mono text-sm text-white/80">
                 {(index ?? 0) + 1} / {images.length}
               </span>
-              <Button variant="glass" size="icon" onClick={() => step(1)} aria-label="Next">
+              <Button variant="glass" size="icon" onClick={() => step(1)} aria-label={t("next")}>
                 <ChevronRightIcon className="rtl:-scale-x-100" />
               </Button>
             </div>

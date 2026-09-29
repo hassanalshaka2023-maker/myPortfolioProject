@@ -74,7 +74,7 @@ export function Header({ brand, items }: { brand: string; items: NavItem[] }) {
         className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4"
       >
         <nav
-          aria-label="Main"
+          aria-label={t("mainNav")}
           className={cn(
             "flex w-full max-w-5xl items-center justify-between gap-4 rounded-full border border-transparent py-2 pe-2 ps-5 transition-all duration-500 ease-out-expo",
             (scrolled || open) && "glass shadow-[0_8px_40px_-12px_rgb(0_0_0/0.35)]",

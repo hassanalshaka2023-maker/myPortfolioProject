@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Aurora } from "@/components/effects/aurora";
 import { AnimatedHeadline } from "@/components/effects/animated-headline";
 import { CursorGlow } from "@/components/effects/cursor-glow";
-import { Reveal } from "@/components/effects/reveal";
+import { Enter } from "@/components/effects/enter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { localized } from "@/lib/i18n-fields";
@@ -22,29 +22,29 @@ export async function Hero({ settings, locale }: { settings: PublicSettings; loc
       <div className="container-page flex flex-1 flex-col justify-center pb-24">
         <div className="flex flex-wrap items-center gap-3">
           {settings.openToWork && (
-            <Reveal>
+            <Enter>
               <Badge variant="outline" className="glass gap-2 py-1.5 pe-3.5 ps-2 text-foreground/80">
                 <span className="size-2 animate-pulse-dot rounded-full bg-success" />
                 {t("available")}
               </Badge>
-            </Reveal>
+            </Enter>
           )}
           {location && (
-            <Reveal delay={0.05}>
+            <Enter delay={0.05}>
               <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
                 <MapPinIcon className="size-3.5" />
                 {location}
               </span>
-            </Reveal>
+            </Enter>
           )}
         </div>
 
-        <Reveal delay={0.1}>
+        <Enter delay={0.1}>
           <p className="mt-8 font-mono text-sm text-muted-foreground">
             {t("greeting")} <span className="text-foreground">{localized(settings, "name", locale)}</span>
             <span className="text-brand-text"> — {localized(settings, "role", locale)}</span>
           </p>
-        </Reveal>
+        </Enter>
 
         <AnimatedHeadline
           text={localized(settings, "tagline", locale)}
@@ -52,11 +52,11 @@ export async function Hero({ settings, locale }: { settings: PublicSettings; loc
           className="mt-4 max-w-5xl text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-display sm:text-7xl lg:text-[5.75rem]"
         />
 
-        <Reveal delay={0.5}>
+        <Enter delay={0.5}>
           <p className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">{localized(settings, "intro", locale)}</p>
-        </Reveal>
+        </Enter>
 
-        <Reveal delay={0.6} className="mt-10 flex flex-wrap gap-3">
+        <Enter delay={0.6} className="mt-10 flex flex-wrap gap-3">
           <Button size="lg" asChild>
             <a href="#projects">
               {t("viewProjects")}
@@ -74,7 +74,7 @@ export async function Hero({ settings, locale }: { settings: PublicSettings; loc
               </a>
             </Button>
           )}
-        </Reveal>
+        </Enter>
       </div>
 
       <a

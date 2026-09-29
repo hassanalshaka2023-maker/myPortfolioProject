@@ -14,6 +14,7 @@ import { login } from "@/server/actions/auth";
 
 export function LoginForm({ callbackUrl }: { callbackUrl: string | null }) {
   const t = useTranslations("dashboard.login");
+  const tCommon = useTranslations("common");
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [show, setShow] = useState(false);
@@ -63,7 +64,7 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string | null }) {
           <button
             type="button"
             onClick={() => setShow((s) => !s)}
-            aria-label={show ? "Hide password" : "Show password"}
+            aria-label={show ? tCommon("hidePassword") : tCommon("showPassword")}
             className="absolute end-1 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-md text-muted-foreground hover:text-foreground"
           >
             {show ? <EyeOffIcon className="size-4" /> : <EyeIcon className="size-4" />}

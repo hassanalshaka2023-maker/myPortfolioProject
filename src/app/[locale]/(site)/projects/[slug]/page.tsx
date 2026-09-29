@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowLeftIcon, ArrowUpRightIcon } from "lucide-react";
 import { Aurora } from "@/components/effects/aurora";
 import { AnimatedHeadline } from "@/components/effects/animated-headline";
+import { Enter } from "@/components/effects/enter";
 import { Reveal, RevealGroup, RevealItem } from "@/components/effects/reveal";
 import { CoverPlaceholder, STATUS_BADGE } from "@/components/sections/project-card";
 import { Gallery } from "@/components/sections/gallery";
@@ -15,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { localized } from "@/lib/i18n-fields";
+import { alternates, jsonLd, localeUrl } from "@/lib/seo";
 import { cn, formatDate } from "@/lib/utils";
 import { getProjectBySlug, getPublishedProjects } from "@/server/queries";
 
@@ -38,10 +40,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return {};
   const title = localized(project, "title", locale);
   const description = localized(project, "summary", locale);
+  const path = `/projects/${project.slug}`;
+  // og:image comes from ./opengraph-image.tsx (branded card, or the cover when there is one)
   return {
     title,
     description,
-    openGraph: { title, description, type: "article", images: project.coverImage ? [project.coverImage] : undefined },
+    keywords: project.techStack,
+    alternates: alternates(locale, path),
+    openGraph: { title, description, type: "article", url: localeUrl(locale, path), modifiedTime: project.updatedAt },
+    twitter: { title, description },
   };
 }
 
@@ -75,29 +82,45 @@ export default async function ProjectPage({ params }: Props) {
     { key: "result", label: t("detail.result"), text: localized(project, "result", locale) },
   ].filter((s) => s.text);
 
+  const structured = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: title,
+    description: localized(project, "summary", locale),
+    url: localeUrl(locale, `/projects/${project.slug}`),
+    inLanguage: locale,
+    keywords: project.techStack.join(", "),
+    ...(project.coverImage && { image: project.coverImage }),
+    ...(project.startDate && { dateCreated: project.startDate }),
+    dateModified: project.updatedAt,
+    creator: { "@id": `${localeUrl("en")}#person` },
+    ...(project.liveUrl && { sameAs: project.liveUrl }),
+  };
+
   return (
     <article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(structured)} />
       {/* ─── Header ─── */}
       <header className="relative isolate overflow-hidden pb-16 pt-36 md:pt-44">
         <Aurora className="-z-20 opacity-70" />
         <div className="bg-grid absolute inset-0 -z-10" aria-hidden />
         <div className="container-page">
-          <Reveal>
+          <Enter>
             <Link href="/#projects" className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
               <ArrowLeftIcon className="size-4 transition-transform duration-300 group-hover:-translate-x-1 rtl:-scale-x-100 rtl:group-hover:translate-x-1" />
               {t("detail.back")}
             </Link>
-          </Reveal>
-          <Reveal delay={0.05} className="mt-8 flex flex-wrap items-center gap-2">
+          </Enter>
+          <Enter delay={0.05} className="mt-8 flex flex-wrap items-center gap-2">
             <Badge variant={STATUS_BADGE[project.status]}>{t(`status.${project.status}`)}</Badge>
             {project.featured && <Badge variant="outline">★ {t("featured")}</Badge>}
-          </Reveal>
+          </Enter>
           <AnimatedHeadline text={title} delay={0.1} className="mt-5 max-w-5xl text-balance text-4xl font-semibold leading-[1.05] tracking-display sm:text-6xl lg:text-7xl" />
-          <Reveal delay={0.3}>
+          <Enter delay={0.3}>
             <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">{localized(project, "summary", locale)}</p>
-          </Reveal>
+          </Enter>
           {(project.liveUrl || project.githubUrl) && (
-            <Reveal delay={0.4} className="mt-9 flex flex-wrap gap-3">
+            <Enter delay={0.4} className="mt-9 flex flex-wrap gap-3">
               {project.liveUrl && (
                 <Button size="lg" asChild>
                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -114,7 +137,7 @@ export default async function ProjectPage({ params }: Props) {
                   </a>
                 </Button>
               )}
-            </Reveal>
+            </Enter>
           )}
         </div>
       </header>
@@ -143,7 +166,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* ─── Cover ─── */}
         <Reveal className="relative aspect-[16/9] overflow-hidden rounded-3xl border bg-muted">
           {project.coverImage ? (
-            <Image src={project.coverImage} alt={title} fill priority sizes="(min-width: 1216px) 1152px, 100vw" className="object-cover" />
+            <Image src={project.coverImage} alt={title} fill preload sizes="(min-width: 1216px) 1152px, 100vw" className="object-cover" />
           ) : (
             <CoverPlaceholder title={title} tech={project.techStack} className="[&>span:first-of-type]:text-9xl" />
           )}

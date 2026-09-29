@@ -33,6 +33,7 @@ export default auth((req) => {
 });
 
 export const config = {
-  // Skip API routes, Next internals and any path with a file extension (sitemap.xml, images, …)
-  matcher: "/((?!api|_next|_vercel|.*\\..*).*)",
+  // Skip API routes, Next internals, generated images and any path with a file extension (sitemap.xml, …).
+  // OG image URLs already carry their locale segment, so they must not be redirected.
+  matcher: "/((?!api|_next|_vercel|apple-icon|.*opengraph-image|.*\\..*).*)",
 };

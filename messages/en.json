@@ -13,7 +13,15 @@
     "loading": "Loading…",
     "present": "Present",
     "viewAll": "View all",
-    "backHome": "Back home"
+    "backHome": "Back home",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "mainNav": "Main",
+    "selectAll": "Select all",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "removeItem": "Remove {item}"
   },
   "nav": {
     "about": "About",

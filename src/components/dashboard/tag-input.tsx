@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 /** Chips input: Enter / comma adds, Backspace on empty removes the last, paste splits on commas. */
@@ -20,6 +21,7 @@ export function TagInput({
   suggestions?: string[];
   invalid?: boolean;
 }) {
+  const t = useTranslations("common");
   const [draft, setDraft] = useState("");
 
   const add = (raw: string) => {
@@ -49,7 +51,7 @@ export function TagInput({
             {tag}
             <button
               type="button"
-              aria-label={`Remove ${tag}`}
+              aria-label={t("removeItem", { item: tag })}
               onClick={() => onChange(value.filter((t) => t !== tag))}
               className="grid size-4 place-items-center rounded text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
             >
